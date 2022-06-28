@@ -1,0 +1,27 @@
+{
+  "name": "road_crm",
+  "version": "0.0.1",
+  "description": "awesome app for road building",
+  "main": "index.js",
+  "scripts": {
+    "devApi": "cd server/ && npm run start:dev",
+    "devUi": "cd client/ && npm run serve",
+    "buildUi": "cd client/ && npm run build",
+    "install_modules": "npm i && cd client/ && npm i && cd ../server && npm i && cd ../",
+    "launch_app_dev": "npm-run-all --parallel devUi devApi",
+    "launch_app_build": "npm-run-all --parallel buildUi devApi"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leonid-varygin/road-crm.git"
+  },
+  "author": "Leonid Varygin <varygin.dev@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leonid-varygin/road-crm/issues"
+  },
+  "homepage": "https://github.com/leonid-varygin/road-crm#readme",
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
+  }
+}
