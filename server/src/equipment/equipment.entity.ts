@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { BeforeUpdate, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('equipment')
 export class EquipmentEntity {
@@ -24,10 +24,21 @@ export class EquipmentEntity {
   location: string;
 
   @Column()
-  buyDate: string;
+  buyDate: Date;
+
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  created: Date;
+
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  updated: Date;
+
+  @BeforeUpdate()
+  updateTimestamp() {
+    this.updated = new Date();
+  }
 
   @Column()
-  certificationDate: string;
+  certificationDate: Date;
 
   @Column()
   certificationPeriod: string;
@@ -45,22 +56,5 @@ export class EquipmentEntity {
   typeTest: string[];
 
   @Column()
-  desc: string;
-
-  //   export class CreateEquipmentDto {
-  //   readonly name: string;
-  //   readonly serialNumber: string;
-  //   readonly invertNumber: string;
-  //   readonly passportId: string;
-  //   readonly state: string;
-  //   readonly location: string;
-  //   readonly buyDate: string;
-  //   readonly certificationDate: string;
-  //   readonly certificationPeriod: string;
-  //   readonly quantity: number;
-  //   readonly visiting: false;
-  //   readonly type: string[];
-  //   readonly typeTest: string[];
-  //   readonly desc: string;
-  // }
+  desc: string[];
 }
