@@ -74,13 +74,6 @@
             <el-checkbox label="Грунт" name="type" />
           </el-checkbox-group>
         </el-form-item>
-
-        <!--        <el-form-item label="Resources">-->
-        <!--          <el-radio-group v-model="form.resource">-->
-        <!--            <el-radio label="Sponsor" />-->
-        <!--            <el-radio label="Venue" />-->
-        <!--          </el-radio-group>-->
-        <!--        </el-form-item>-->
         <el-form-item label="Дополнительная информация">
           <el-input v-model="form.desc" type="textarea" />
         </el-form-item>
@@ -104,7 +97,6 @@ const form = reactive({
   passportId: "",
   state: "",
   location: "1",
-  date2: "",
   buyDate: Date,
   certificationDate: Date,
   certificationPeriod: "",
@@ -118,6 +110,6 @@ const form = reactive({
 const onSubmit = () => {
   console.log("submit!", form);
   // const axios: any = inject("axios");
-  axios.post("http://localhost:5000", form);
+  axios.post("http://localhost:3000/api/equipment/", form);
 };
 </script>
