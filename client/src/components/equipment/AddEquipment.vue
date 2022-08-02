@@ -13,10 +13,10 @@
         </el-form-item>
         <el-form-item label="Тип оборудования">
           <el-select v-model="form.type" placeholder="Выберите тип">
-            <el-option label="ИО" value="shanghai" />
-            <el-option label="СИ" value="shanghai" />
-            <el-option label="ВО" value="beijing" />
-            <el-option label="Без типа" value="beijing" />
+            <el-option label="ИО" value="ИО" />
+            <el-option label="СИ" value="СИ" />
+            <el-option label="ВО" value="ВО" />
+            <el-option label="Без типа" value="Без типа" />
           </el-select>
         </el-form-item>
         <el-form-item label="Штук в комплекте">
@@ -27,10 +27,13 @@
         </el-form-item>
         <el-form-item label="Состояние">
           <el-select v-model="form.state" placeholder="Выберите состояние">
-            <el-option label="Исправен" value="shanghai" />
-            <el-option label="Неисправен" value="shanghai" />
-            <el-option label="В ремонте" value="beijing" />
-            <el-option label="Выведен из эксплуатации" value="beijing" />
+            <el-option label="Исправен" value="Исправен" />
+            <el-option label="Неисправен" value="Неисправен" />
+            <el-option label="В ремонте" value="В ремонте" />
+            <el-option
+              label="Выведен из эксплуатации"
+              value="Выведен из эксплуатации"
+            />
           </el-select>
         </el-form-item>
         <el-form-item label="Местоположение">
@@ -38,10 +41,10 @@
             v-model="form.location"
             placeholder="Где находится прибор?"
           >
-            <el-option label="ЦСЛ" value="shanghai" />
-            <el-option label="Пост №1" value="shanghai" />
-            <el-option label="Пост №2" value="beijing" />
-            <el-option label="Пост №3" value="beijing" />
+            <el-option label="ЦСЛ" value="ЦСЛ" />
+            <el-option label="Пост №1" value="Пост 1" />
+            <el-option label="Пост №2" value="Пост 2" />
+            <el-option label="Пост №3" value="Пост 3" />
           </el-select>
         </el-form-item>
         <el-form-item label="Дата покупки">
@@ -55,13 +58,12 @@
         <el-form-item label="Дата аттестации">
           <el-date-picker
             v-model="form.certificationDate"
-            :size="size"
             placeholder="Выберите дату аттестации"
             type="date"
           />
         </el-form-item>
         <el-form-item :span="21" label="Периодичность аттестации (мес)">
-          <el-input-number v-model="form.certificationPeriod" :step="2" />
+          <el-input-number v-model="form.certificationPeriod" :step="1" />
         </el-form-item>
         <el-form-item label="Прибор для выездов">
           <el-switch v-model="form.visiting" />
@@ -108,8 +110,7 @@ const form = reactive({
 });
 
 const onSubmit = () => {
-  console.log("submit!", form);
-  // const axios: any = inject("axios");
+  console.table(form);
   axios.post("http://localhost:3000/api/equipment/", form);
 };
 </script>

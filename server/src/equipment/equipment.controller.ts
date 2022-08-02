@@ -2,6 +2,7 @@ import { Body, Controller, Get, Post } from '@nestjs/common';
 import { EquipmentService } from './equipment.service';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CreateEquipmentDto } from './dto';
+import { EquipmentEntity } from './equipment.entity';
 
 @ApiTags('equipment')
 @Controller('/equipment')
@@ -14,8 +15,9 @@ export class EquipmentController {
   })
   @ApiResponse({ status: 403, description: 'Ошибка.' })
   @Get()
+  //Todo решить проблему с запросом GraphQL
   getAll(): string {
-    return this.equipmentService.getAll();
+    return this.equipmentService.getOne();
   }
 
   @ApiOperation({ summary: 'Создание оборудования' })
@@ -25,8 +27,8 @@ export class EquipmentController {
   })
   @ApiResponse({ status: 403, description: 'Ошибка.' })
   @Post()
-  create(@Body() equipmentData: CreateEquipmentDto): string {
+  create(@Body() equipmentData: CreateEquipmentDto): Promise<EquipmentEntity> {
     console.log(equipmentData);
-    return this.equipmentService.create();
+    return this.equipmentService.create(equipmentData);
   }
 }
