@@ -15,9 +15,8 @@ export class EquipmentController {
   })
   @ApiResponse({ status: 403, description: 'Ошибка.' })
   @Get()
-  //Todo решить проблему с запросом GraphQL
-  getAll(): string {
-    return this.equipmentService.getOne();
+  getAll(id): Promise<EquipmentEntity> {
+    return this.equipmentService.getOneEquipment(id);
   }
 
   @ApiOperation({ summary: 'Создание оборудования' })
@@ -27,8 +26,7 @@ export class EquipmentController {
   })
   @ApiResponse({ status: 403, description: 'Ошибка.' })
   @Post()
-  create(@Body() equipmentData: CreateEquipmentDto): Promise<EquipmentEntity> {
-    console.log(equipmentData);
-    return this.equipmentService.create(equipmentData);
+  createEquipment(@Body() equipmentData: CreateEquipmentDto): Promise<EquipmentEntity> {
+    return this.equipmentService.createEquipment(equipmentData);
   }
 }
